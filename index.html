@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北京五日皇城深度游</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans SC', sans-serif; 
+            background-color: #f8f5f2;
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: #b91c1c;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .card-shadow {
+            box-shadow: 0 4px 20px rgba(185, 28, 28, 0.08);
+        }
+
+        .imperial-border {
+            border-left: 4px solid #b91c1c;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.98);
+        }
+        
+        img {
+            background-color: #f3f4f6;
+            object-fit: cover;
+        }
+
+        .dotted-line {
+            border-left: 2px dotted #d1d5db;
+            margin-left: 7px;
+            padding-left: 15px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <div class="max-w-md mx-auto min-h-screen relative pb-20 bg-[#fdfbf7] shadow-2xl overflow-hidden">
+        
+        <!-- Header -->
+        <div class="relative h-72">
+            <img src="wuzhenhe.jpg" 
+                 class="absolute inset-0 w-full h-full object-cover" 
+                 alt="Beijing Forbidden City">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/40 to-red-900/90"></div>
+            
+            <div class="absolute bottom-6 left-6 text-white z-10">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-yellow-600 text-white text-[10px] px-2 py-0.5 rounded tracking-wider">深度版</span>
+                    <span class="text-yellow-200 text-xs tracking-widest uppercase">5 Days Trip</span>
+                </div>
+                <h1 class="text-3xl font-bold mb-1 text-shadow-lg">皇城·北京</h1>
+                <p class="text-xs text-gray-200 font-light opacity-90">含详细时间节点与三餐住宿推荐</p>
+            </div>
+        </div>
+
+        <!-- 住宿推荐模块 -->
+        <div class="mx-4 -mt-8 relative z-20 bg-white p-4 rounded-xl shadow-lg border-t-4 border-yellow-500 mb-6">
+            <h3 class="font-bold text-gray-800 text-sm mb-3 flex items-center">
+                <i class="fas fa-bed text-yellow-600 mr-2"></i> 推荐住宿方案
+            </h3>
+            <div class="space-y-3">
+                <div class="flex items-start">
+                    <span class="bg-red-100 text-red-700 text-[10px] px-1.5 py-0.5 rounded mt-0.5 mr-2 shrink-0">首选</span>
+                    <div>
+                        <span class="text-xs font-bold text-gray-800">王府井/灯市口区域</span>
+                        <p class="text-[10px] text-gray-500">交通最便利，去故宫看升旗都近，周围全是吃的。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-100 text-blue-700 text-[10px] px-1.5 py-0.5 rounded mt-0.5 mr-2 shrink-0">备选</span>
+                    <div>
+                        <span class="text-xs font-bold text-gray-800">前门/崇文门区域</span>
+                        <p class="text-[10px] text-gray-500">老北京氛围浓，离天坛近，性价比略高。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative px-4 space-y-8 z-10">
+            <div class="timeline-line"></div>
+
+            <!-- DAY 1 -->
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center">
+                    <div class="w-8 h-8 bg-red-700 rounded-full flex items-center justify-center text-white font-serif font-bold shadow-lg border-2 border-yellow-100 z-10">D1</div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl card-shadow imperial-border mb-4">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                        <h2 class="text-lg font-bold text-gray-900">中轴线的威严</h2>
+                        <span class="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">步数预警：2万+</span>
+                    </div>
+                    
+                    <!-- 早餐 -->
+                    <div class="mb-3 flex items-center gap-2 bg-yellow-50/50 p-2 rounded">
+                        <span class="text-xs font-bold text-yellow-700">🥣 早餐</span>
+                        <span class="text-xs text-gray-600">酒店附近吃<b>庆丰包子铺</b>或<b>煎饼果子</b></span>
+                    </div>
+
+                    <!-- 行程节点 -->
+                    <div class="space-y-0">
+                        <!-- 08:30 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">08:30</span>
+                            <div class="pb-4">
+                                <h3 class="font-bold text-sm text-gray-800">天安门广场</h3>
+                                <p class="text-[10px] text-gray-500">需提前1天预约，过安检需排队。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 步行 -->
+                        <div class="ml-10 dotted-line text-[10px] text-gray-400">
+                            🚶 步行约20分钟穿过端门
+                        </div>
+
+                        <!-- 09:30 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">09:30</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">故宫博物院 (午门入)</h3>
+                                <p class="text-[10px] text-gray-500">中轴线游览：太和殿→中和殿→保和殿。</p>
+                                <a href="https://uri.amap.com/search?keyword=故宫博物院午门" target="_blank" class="mt-1 nav-btn inline-flex items-center bg-gray-50 text-gray-600 text-[10px] px-2 py-1 rounded border border-gray-200">
+                                    <i class="fas fa-location-arrow mr-1 text-red-500"></i> 导航午门
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 午餐 -->
+                        <div class="ml-10 my-2 bg-orange-50 p-2 rounded border border-orange-100">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-orange-800">🥢 午餐：故宫冰窖餐厅</span>
+                                    <p class="text-[10px] text-orange-600">体验皇宫里吃饭，必点"脊兽冰棍"。</p>
+                                </div>
+                                <a href="https://uri.amap.com/search?keyword=故宫冰窖餐厅" target="_blank" class="text-orange-500"><i class="fas fa-location-arrow"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- 14:00 -->
+                        <div class="flex gap-3 pt-2">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">14:00</span>
+                            <div class="pb-4">
+                                <h3 class="font-bold text-sm text-gray-800">御花园 & 神武门</h3>
+                                <p class="text-[10px] text-gray-500">看完御花园，从神武门（北门）出。</p>
+                            </div>
+                        </div>
+
+                        <!-- 15:30 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">15:30</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">景山公园</h3>
+                                <p class="text-[10px] text-gray-500">过马路就是，爬到顶上看故宫全景。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 晚餐推荐 -->
+                    <div class="mt-4 border-t border-gray-100 pt-3">
+                        <div class="flex gap-3 bg-red-50 p-3 rounded-lg">
+                            <!-- 修复后的烤鸭图片 -->
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Peking_Duck_at_Quanjude_20190723.jpg/640px-Peking_Duck_at_Quanjude_20190723.jpg" 
+                                 class="w-16 h-16 rounded object-cover flex-shrink-0 shadow-sm" 
+                                 alt="Siji Minfu Duck">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-sm font-bold text-red-900">🥣 晚餐：四季民福</h4>
+                                    <span class="text-[10px] bg-red-200 text-red-800 px-1 rounded">必吃</span>
+                                </div>
+                                <p class="text-[10px] text-red-700 mt-1 leading-tight">酥香嫩滑。推荐去灯市口店，排队比故宫店快。</p>
+                                <a href="https://uri.amap.com/search?keyword=四季民福烤鸭店(灯市口店)" target="_blank" class="mt-2 nav-btn w-full bg-white text-red-600 text-[10px] py-1 rounded border border-red-200 flex items-center justify-center gap-1">
+                                    <i class="fas fa-location-arrow"></i> 导航去吃鸭
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center">
+                    <div class="w-8 h-8 bg-red-700 rounded-full flex items-center justify-center text-white font-serif font-bold shadow-lg border-2 border-yellow-100 z-10">D2</div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl card-shadow imperial-border mb-4">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                        <h2 class="text-lg font-bold text-gray-900">长城好汉之旅</h2>
+                    </div>
+
+                    <!-- 早餐 -->
+                    <div class="mb-3 flex items-center gap-2 bg-yellow-50/50 p-2 rounded">
+                        <span class="text-xs font-bold text-yellow-700">🥣 早餐</span>
+                        <span class="text-xs text-gray-600">车上解决（建议自备面包牛奶）</span>
+                    </div>
+
+                    <div class="space-y-0">
+                        <!-- 07:30 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">07:30</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-800">出发前往慕田峪</h3>
+                                <p class="text-[10px] text-gray-500">推荐乘坐「慕巴士」直通车（港澳中心/芍药居发车）。</p>
+                            </div>
+                        </div>
+
+                        <!-- 车程 -->
+                        <div class="ml-10 dotted-line text-[10px] text-gray-400">
+                            🚌 车程约 1.5 - 2 小时
+                        </div>
+
+                        <!-- 10:00 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">10:00</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">慕田峪长城</h3>
+                                <p class="text-[10px] text-gray-500">索道上至14号敌楼，步行至20号好汉坡，再滑道下山。</p>
+                                <a href="https://uri.amap.com/search?keyword=慕田峪长城" target="_blank" class="mt-1 nav-btn inline-flex items-center bg-gray-50 text-gray-600 text-[10px] px-2 py-1 rounded border border-gray-200">
+                                    <i class="fas fa-location-arrow text-blue-500"></i> 导航景点
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 午餐 -->
+                        <div class="ml-10 my-2 bg-orange-50 p-2 rounded border border-orange-100">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-orange-800">🥢 午餐：山下简餐</span>
+                                    <p class="text-[10px] text-orange-600">景区入口有赛百味、汉堡王、馅老满。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 16:00 -->
+                        <div class="flex gap-3 pt-2">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">16:00</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-800">返回市区 & 鸟巢水立方</h3>
+                                <p class="text-[10px] text-gray-500">巴士回市区后，转地铁去奥林匹克公园看夜景。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 晚餐 -->
+                    <div class="mt-4 border-t border-gray-100 pt-3">
+                        <div class="bg-red-50 p-3 rounded-lg">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-sm font-bold text-red-900">🥣 晚餐：胡大饭馆(簋街)</h4>
+                                <span class="text-[10px] bg-red-200 text-red-800 px-1 rounded">麻辣小龙虾</span>
+                            </div>
+                            <p class="text-[10px] text-red-700 mb-2">北京夜宵排队王，气氛极好。吃完可逛南锣鼓巷。</p>
+                            <a href="https://uri.amap.com/search?keyword=胡大饭馆(簋街总店)" target="_blank" class="nav-btn w-full bg-white text-red-600 text-[10px] py-1.5 rounded border border-red-200 flex items-center justify-center gap-1">
+                                <i class="fas fa-location-arrow"></i> 导航去簋街
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center">
+                    <div class="w-8 h-8 bg-red-700 rounded-full flex items-center justify-center text-white font-serif font-bold shadow-lg border-2 border-yellow-100 z-10">D3</div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl card-shadow imperial-border mb-4">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                        <h2 class="text-lg font-bold text-gray-900">地道京味儿</h2>
+                    </div>
+
+                    <!-- 早餐 -->
+                    <div class="mb-3 flex items-center gap-2 bg-yellow-50/50 p-2 rounded">
+                        <span class="text-xs font-bold text-yellow-700">🥣 早餐</span>
+                        <span class="text-xs text-gray-600"><b>尹三豆汁</b>(挑战) 或 <b>黑窑厂糖油饼</b></span>
+                        <a href="https://uri.amap.com/search?keyword=尹三豆汁" target="_blank" class="text-yellow-600"><i class="fas fa-location-arrow text-[10px]"></i></a>
+                    </div>
+
+                    <div class="space-y-0">
+                        <!-- 08:30 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">08:30</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">天坛公园</h3>
+                                <p class="text-[10px] text-gray-500">东门进，依次看祈年殿、回音壁、圆丘。</p>
+                                <a href="https://uri.amap.com/search?keyword=天坛公园东门" target="_blank" class="mt-1 nav-btn inline-flex items-center bg-gray-50 text-gray-600 text-[10px] px-2 py-1 rounded border border-gray-200">
+                                    <i class="fas fa-location-arrow text-blue-500"></i> 导航东门
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 午餐 -->
+                        <div class="ml-10 my-2 bg-orange-50 p-2 rounded border border-orange-100">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-orange-800">🥢 午餐：小吊梨汤</span>
+                                    <p class="text-[10px] text-orange-600">润肺梨汤+精致京菜，环境优雅。</p>
+                                </div>
+                                <a href="https://uri.amap.com/search?keyword=小吊梨汤(和平里店)" target="_blank" class="text-orange-500"><i class="fas fa-location-arrow"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- 14:00 -->
+                        <div class="flex gap-3 pt-2">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">14:00</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">什刹海 & 胡同游</h3>
+                                <p class="text-[10px] text-gray-500">从前海走到后海，看银锭桥，逛烟袋斜街。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 晚餐 -->
+                    <div class="mt-4 border-t border-gray-100 pt-3">
+                        <div class="flex gap-3 bg-red-50 p-3 rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1626804475297-411d863b37f8?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded object-cover flex-shrink-0" alt="Hotpot">
+                            <div class="flex-1">
+                                <h4 class="text-sm font-bold text-red-900 mb-1">🥣 晚餐：聚宝源/南门涮肉</h4>
+                                <p class="text-[10px] text-red-700 leading-tight mb-2">老北京铜锅涮肉，手切羊肉+麻酱烧饼一绝。</p>
+                                <a href="https://uri.amap.com/search?keyword=南门涮肉(后海店)" target="_blank" class="nav-btn bg-white text-red-600 text-[10px] px-2 py-1 rounded border border-red-200 inline-flex items-center gap-1">
+                                    <i class="fas fa-location-arrow"></i> 导航去涮肉
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center">
+                    <div class="w-8 h-8 bg-red-700 rounded-full flex items-center justify-center text-white font-serif font-bold shadow-lg border-2 border-yellow-100 z-10">D4</div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl card-shadow imperial-border mb-4">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                        <h2 class="text-lg font-bold text-gray-900">皇家园林</h2>
+                    </div>
+
+                    <!-- 早餐 -->
+                    <div class="mb-3 flex items-center gap-2 bg-yellow-50/50 p-2 rounded">
+                        <span class="text-xs font-bold text-yellow-700">🥣 早餐</span>
+                        <span class="text-xs text-gray-600">便利店/酒店早餐</span>
+                    </div>
+
+                    <div class="space-y-0">
+                        <!-- 09:00 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">09:00</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">颐和园</h3>
+                                <p class="text-[10px] text-gray-500">北宫门进（省力），苏州街→佛香阁→长廊。</p>
+                                <a href="https://uri.amap.com/search?keyword=颐和园北宫门" target="_blank" class="mt-1 nav-btn inline-flex items-center bg-gray-50 text-gray-600 text-[10px] px-2 py-1 rounded border border-gray-200">
+                                    <i class="fas fa-location-arrow text-green-500"></i> 导航北宫门
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 午餐 -->
+                        <div class="ml-10 my-2 bg-orange-50 p-2 rounded border border-orange-100">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-orange-800">🥢 午餐：清华/北大周边</span>
+                                    <p class="text-[10px] text-orange-600">推荐西门烤翅或大学路上的快餐。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 13:30 -->
+                        <div class="flex gap-3 pt-2">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">13:30</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">圆明园</h3>
+                                <p class="text-[10px] text-gray-500">观西洋楼遗址，铭记历史。园区很大，建议坐电瓶车。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 晚餐 -->
+                    <div class="mt-4 border-t border-gray-100 pt-3">
+                        <div class="bg-purple-50 p-3 rounded-lg flex items-center justify-between">
+                            <div>
+                                <h4 class="text-sm font-bold text-purple-900">🥣 晚餐：局气</h4>
+                                <p class="text-[10px] text-purple-700">创意京菜，"蜂窝煤炒饭"拍照必点。</p>
+                            </div>
+                            <a href="https://uri.amap.com/search?keyword=局气(王府井店)" target="_blank" class="nav-btn bg-white text-purple-600 text-[10px] px-3 py-1.5 rounded border border-purple-200">
+                                <i class="fas fa-location-arrow"></i> 导航
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 5 -->
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 w-12 h-12 flex items-center justify-center">
+                    <div class="w-8 h-8 bg-red-700 rounded-full flex items-center justify-center text-white font-serif font-bold shadow-lg border-2 border-yellow-100 z-10">D5</div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl card-shadow imperial-border mb-4">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                        <h2 class="text-lg font-bold text-gray-900">祈福 & 离开</h2>
+                    </div>
+
+                    <!-- 早餐 -->
+                    <div class="mb-3 flex items-center gap-2 bg-yellow-50/50 p-2 rounded">
+                        <span class="text-xs font-bold text-yellow-700">🥣 早餐</span>
+                        <span class="text-xs text-gray-600"><b>姚记炒肝</b>(鼓楼店) 尝尝包子和炒肝</span>
+                        <a href="https://uri.amap.com/search?keyword=姚记炒肝(鼓楼店)" target="_blank" class="text-yellow-600"><i class="fas fa-location-arrow text-[10px]"></i></a>
+                    </div>
+
+                    <div class="space-y-0">
+                        <!-- 09:30 -->
+                        <div class="flex gap-3">
+                            <span class="text-xs font-mono text-gray-400 w-8 pt-1">09:30</span>
+                            <div class="pb-2">
+                                <h3 class="font-bold text-sm text-gray-800">雍和宫</h3>
+                                <p class="text-[10px] text-gray-500">北京香火最旺的藏传佛教寺院。昭泰门两侧领免费环保香。</p>
+                                <a href="https://uri.amap.com/search?keyword=雍和宫" target="_blank" class="mt-1 nav-btn inline-flex items-center bg-gray-50 text-gray-600 text-[10px] px-2 py-1 rounded border border-gray-200">
+                                    <i class="fas fa-location-arrow text-yellow-600"></i> 导航景点
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 午餐 -->
+                        <div class="ml-10 my-2 bg-gray-50 p-2 rounded border border-gray-200">
+                            <div class="flex gap-3">
+                                <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=200&auto=format&fit=crop" class="w-12 h-12 rounded object-cover" alt="Dimsum">
+                                <div class="flex-1">
+                                    <span class="text-xs font-bold text-gray-800">🥢 午餐：金鼎轩(地坛店)</span>
+                                    <p class="text-[10px] text-gray-600 mb-1">就在雍和宫旁，24小时营业，南北点心全都有。</p>
+                                    <a href="https://uri.amap.com/search?keyword=金鼎轩(地坛店)" target="_blank" class="nav-btn inline-block bg-white text-gray-500 text-[10px] px-2 py-0.5 rounded border border-gray-300">
+                                        <i class="fas fa-location-arrow"></i> 导航
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 返程 -->
+                        <div class="bg-blue-50 p-3 rounded-lg text-center mt-4 border border-blue-100">
+                            <p class="text-sm font-bold text-blue-700">✈️ 行程结束</p>
+                            <p class="text-[10px] text-blue-500 mt-1">请预留 3 小时前往 大兴/首都 机场</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 底部工具栏 -->
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+            <button onclick="window.open('https://map.bjsubway.com/')" class="bg-red-800/95 backdrop-blur border border-red-700 shadow-2xl py-3 px-8 rounded-full text-sm font-bold text-white flex items-center justify-center gap-2 hover:bg-red-900 transition-colors nav-btn">
+                <i class="fas fa-subway"></i> 查看北京地铁图
+            </button>
+        </div>
+
+        <!-- Footer Space -->
+        <div class="h-12"></div>
+    </div>
+
+</body>
+</html>
