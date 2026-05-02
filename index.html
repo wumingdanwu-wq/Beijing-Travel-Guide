@@ -6,29 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>"五大五小" 广东自驾游指南</title>
     
-    <!-- 引入 Tailwind CSS (用于快速布局和样式) -->
+    <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 引入 Lucide Icons (纯 JS 版本) -->
+    <!-- 引入 Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* 隐藏滚动条但保留滚动功能 */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* 切换卡片时的淡入动画 */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
-        }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 </head>
 <body class="min-h-screen bg-gray-100 font-sans pb-10">
@@ -48,7 +39,7 @@
             <p class="text-sm opacity-90 flex items-center">
                 <i data-lucide="car" class="w-4 h-4 mr-1"></i> 2台车 | 
                 <i data-lucide="train" class="w-4 h-4 mx-1"></i> 广州进出 | 
-                <i data-lucide="info" class="w-4 h-4 mx-1"></i> 特种兵行程
+                <i data-lucide="info" class="w-4 h-4 mx-1"></i> 惠州海滨版
             </p>
         </div>
     </div>
@@ -60,22 +51,18 @@
         <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm mb-6 flex items-start">
             <i data-lucide="alert-triangle" class="text-red-500 mr-3 flex-shrink-0 mt-0.5 w-6 h-6"></i>
             <div>
-                <h3 class="text-red-800 font-bold text-sm">行程核心警报</h3>
+                <h3 class="text-red-800 font-bold text-sm">行程优化提示</h3>
                 <p class="text-red-700 text-xs mt-1 leading-relaxed">
-                    本次行程带有5名儿童，且包含单程5小时以上的跨城驾驶。请务必确认车辆不超载，并准备好车内安抚玩具。珠海长隆及珠江夜游门票请<b>现在立刻预订</b>！
+                    已将第四天行程调整为惠州。将原先单日5小时的回程拆分，减轻驾驶压力，孩子们还能顺路去海滩玩沙子。请提前预定惠州的海景房！
                 </p>
             </div>
         </div>
 
-        <!-- 天数导航栏 (JS动态生成) -->
-        <div id="tabs-container" class="flex space-x-2 overflow-x-auto pb-4 scrollbar-hide">
-            <!-- Tabs will be injected here -->
-        </div>
+        <!-- 天数导航栏 -->
+        <div id="tabs-container" class="flex space-x-2 overflow-x-auto pb-4 scrollbar-hide"></div>
 
-        <!-- 当前选中天的卡片内容 (JS动态生成) -->
-        <div id="active-card" class="mt-2 bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in">
-            <!-- Card content will be injected here -->
-        </div>
+        <!-- 当前选中天的卡片内容 -->
+        <div id="active-card" class="mt-2 bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in"></div>
         
         <!-- 底部提示 -->
         <div class="mt-8 text-center text-xs text-gray-400">
@@ -85,66 +72,65 @@
 
     </div>
 
-    <!-- 逻辑脚本 -->
     <script>
-        // 行程数据
         const itinerary = [
             {
-                id: 0, day: "Day 1", date: "5月1日", theme: "极限拉练 · 寻梦海洋", route: "广州白云站 ➔ 珠海长隆 ➔ 东莞松山湖",
+                id: 0, day: "Day 1", date: "5月1日", theme: "极限拉练 · 寻梦海洋", route: "白云站 ➔ 珠海长隆 ➔ 东莞松山湖",
                 bgColor: "bg-blue-600", lightBg: "bg-blue-50", textColor: "text-blue-800", iconColor: "text-blue-600", nodeBorder: "border-blue-500", nodeText: "text-blue-600",
-                alert: "今日车程极长，且白云站接站有超载风险！请务必安排好车辆座位（2大+1大3小=6人，5座车需分流打车）。",
+                alert: "今日车程长且白云站接站有超载风险！请安排好车辆座位（2大+1大3小=6人，5座车需打车分流）。",
                 timeline: [
-                    { time: "07:00", type: "transport", title: "白云站接站会师", desc: "接齐人马，直接上高速前往珠海横琴。早餐建议在车上解决以节约时间。", icon: "train" },
-                    { time: "10:00", type: "activity", title: "畅游珠海长隆海洋王国", desc: "主打鲸鲨馆、白鲸剧场、企鹅馆。注意给5个小朋友做好防晒。", icon: "camera" },
-                    { time: "18:30", type: "alert", title: "⚠️ 提前出园", desc: "强烈建议放弃晚上8点烟花秀！五一散场极度拥堵。提前出园吃晚饭，为开夜车留足体力。", icon: "alert-triangle" },
-                    { time: "19:30", type: "transport", title: "星夜赶路", desc: "驱车前往东莞松山湖（约1.5-2小时）。孩子们可以在车上睡觉。", icon: "car" },
-                    { time: "22:00", type: "sleep", title: "抵达入住", desc: "入住东莞松山湖哥哥家附近，洗漱休息。", icon: "moon" }
+                    { time: "07:00", type: "transport", title: "白云站接站会师", desc: "接齐人马，上高速前往珠海横琴。早餐建议在车上解决。", icon: "train" },
+                    { time: "10:00", type: "activity", title: "畅游长隆海洋王国", desc: "主打鲸鲨馆、白鲸剧场。注意给5个小朋友做好防晒。", icon: "camera" },
+                    { time: "18:30", type: "alert", title: "⚠️ 提前出园", desc: "强烈建议放弃晚上8点烟花秀，避开散场拥堵，提前出园吃晚饭。", icon: "alert-triangle" },
+                    { time: "19:30", type: "transport", title: "星夜赶路", desc: "驱车前往东莞松山湖（约1.5-2小时），孩子们车上睡觉。", icon: "car" },
+                    { time: "22:00", type: "sleep", title: "抵达入住", desc: "入住东莞松山湖哥哥家附近，休整。", icon: "moon" }
                 ]
             },
             {
                 id: 1, day: "Day 2", date: "5月2日", theme: "一路向东 · 奔赴潮汕", route: "东莞松山湖 ➔ 汕头市区",
                 bgColor: "bg-orange-500", lightBg: "bg-orange-50", textColor: "text-orange-800", iconColor: "text-orange-500", nodeBorder: "border-orange-500", nodeText: "text-orange-600",
-                alert: "五一期间前往粤东的高速极易拥堵（平时4h，预计需5-6h），车上务必为孩子们备足零食、水和便携马桶。",
+                alert: "五一期间前往粤东高速极易拥堵，车上务必为孩子们备足零食、水和便携马桶。",
                 timeline: [
-                    { time: "08:30", type: "relax", title: "松山湖慢时光", desc: "起床后在哥哥家附近吃丰盛早餐。两家人（5大5小，两台车）正式会合，在湖边散散步。", icon: "sun" },
-                    { time: "11:30", type: "transport", title: "双车编队，挺进汕头", desc: "吃过早午饭后及早出发。做好车上长时间带娃的准备。", icon: "car" },
-                    { time: "18:00", type: "food", title: "抵达汕头，牛肉火锅", desc: "直奔八合里或其他地道潮汕牛肉火锅店，一顿鲜甜牛肉扫除疲惫！", icon: "utensils" },
-                    { time: "20:00", type: "activity", title: "汕头小公园夜景", desc: "逛逛充满民国风情的骑楼群，非常适合全家拍合照。", icon: "map-pin" },
-                    { time: "22:00", type: "sleep", title: "入住酒店", desc: "入住汕头市区酒店，为明天的吃喝玩乐养精蓄锐。", icon: "moon" }
+                    { time: "08:30", type: "relax", title: "松山湖慢时光", desc: "在哥哥家附近吃丰盛早餐。两家人正式会合，湖边散步。", icon: "sun" },
+                    { time: "11:30", type: "transport", title: "双车编队，挺进汕头", desc: "吃过早午饭及早出发。做好长时间开车的心理准备。", icon: "car" },
+                    { time: "18:00", type: "food", title: "抵达汕头，牛肉火锅", desc: "直奔八合里等正宗牛肉火锅店，一顿鲜甜牛肉扫除疲惫！", icon: "utensils" },
+                    { time: "20:00", type: "activity", title: "汕头小公园夜景", desc: "逛逛充满民国风情的骑楼群，适合全家拍合照。", icon: "map-pin" },
+                    { time: "22:00", type: "sleep", title: "入住酒店", desc: "入住汕头市区酒店，为明天养精蓄锐。", icon: "moon" }
                 ]
             },
             {
                 id: 2, day: "Day 3", date: "5月3日", theme: "寻味潮汕 · 漫游海岛", route: "汕头市区 ➔ 妈屿岛 ➔ 美食街",
                 bgColor: "bg-red-500", lightBg: "bg-red-50", textColor: "text-red-800", iconColor: "text-red-500", nodeBorder: "border-red-500", nodeText: "text-red-600",
-                alert: "强烈建议避开网红“南澳岛”（进岛大桥会堵死），改去距离市区更近的“妈屿岛”让孩子们挖沙子。",
+                alert: "建议避开网红“南澳岛”（桥易堵），改去近一点的“妈屿岛”挖沙子。",
                 timeline: [
-                    { time: "09:00", type: "food", title: "地道潮汕早餐", desc: "品尝正宗潮汕肠粉、促肉汤。之后去坐一坐【广场轮渡】（1元钱的快乐），吹吹海风。", icon: "anchor" },
-                    { time: "12:00", type: "food", title: "潮汕美食打卡", desc: "大人们可挑战“潮汕毒药”生腌，再来一盘肥美的澄海狮头鹅。", icon: "utensils" },
-                    { time: "14:00", type: "activity", title: "妈屿岛休闲", desc: "驱车前往妈屿岛。有沙滩和海景，人相对少，适合小朋友玩耍。", icon: "sun" },
-                    { time: "18:30", type: "food", title: "珠江路美食街", desc: "开启逛吃模式：甘草水果、蚝烙、反沙芋头...吃到扶墙出。", icon: "coffee" },
+                    { time: "09:00", type: "food", title: "地道潮汕早餐", desc: "品尝潮汕肠粉、促肉汤。坐一坐【广场轮渡】吹海风。", icon: "anchor" },
+                    { time: "12:00", type: "food", title: "美食打卡", desc: "挑战“潮汕毒药”生腌，来盘肥美澄海狮头鹅。", icon: "utensils" },
+                    { time: "14:00", type: "activity", title: "妈屿岛休闲", desc: "驱车前往妈屿岛，人相对少，适合小朋友玩沙子。", icon: "sun" },
+                    { time: "18:30", type: "food", title: "珠江路美食街", desc: "开启逛吃模式：甘草水果、蚝烙、反沙芋头...", icon: "coffee" },
                     { time: "21:30", type: "sleep", title: "返回酒店", desc: "返回汕头市区酒店休息。", icon: "moon" }
                 ]
             },
             {
-                id: 3, day: "Day 4", date: "5月4日", theme: "重返羊城 · 璀璨夜游", route: "汕头市区 ➔ 广州市区",
-                bgColor: "bg-purple-600", lightBg: "bg-purple-50", textColor: "text-purple-800", iconColor: "text-purple-600", nodeBorder: "border-purple-500", nodeText: "text-purple-600",
-                alert: "今日开始出现假期返程高峰，请务必吃完早餐后立刻出发返回广州，切勿拖延至下午。",
+                id: 3, day: "Day 4", date: "5月4日", theme: "沿海折返 · 惠州踏浪", route: "汕头市区 ➔ 惠州双月湾/巽寮湾",
+                bgColor: "bg-indigo-500", lightBg: "bg-indigo-50", textColor: "text-indigo-800", iconColor: "text-indigo-500", nodeBorder: "border-indigo-500", nodeText: "text-indigo-600",
+                alert: "去惠州海边（双月湾/巽寮湾）可能会有短时拥堵，但风景很好。请提前预定多居室海景公寓，方便一大家人聚会。",
                 timeline: [
-                    { time: "09:00", type: "transport", title: "杀回广州", desc: "吃完早餐后双车出发，提早返程避开拥堵最高峰（预计车程4.5-5.5小时）。", icon: "car" },
-                    { time: "15:00", type: "sleep", title: "酒店入住休整", desc: "抵达广州市区酒店（建议住海珠区或天河区）。让孩子们睡个午觉回血。", icon: "moon" },
-                    { time: "18:00", type: "food", title: "广式晚餐", desc: "找一家正宗粤菜馆，品尝白切鸡、烧鹅等广府名菜。", icon: "utensils" },
-                    { time: "19:30", type: "activity", title: "珠江夜游看广州塔", desc: "带着5个孩子，坐游船是看夜景最省力的方式。两岸灯光璀璨，近距离观赏小蛮腰。（需提前订票）", icon: "anchor" }
+                    { time: "09:30", type: "transport", title: "出发前往惠州", desc: "吃完早餐后双车出发，沿深汕高速前往惠州（约3小时车程）。", icon: "car" },
+                    { time: "12:30", type: "food", title: "惠州海鲜大餐", desc: "抵达惠州海滨，找一家靠谱的大排档吃顿生猛海鲜。", icon: "utensils" },
+                    { time: "14:30", type: "sleep", title: "入住海景公寓", desc: "办理入住。五大五小推荐租一套海景公寓，大家能聚在客厅聊天。", icon: "moon" },
+                    { time: "16:00", type: "activity", title: "海滩踩水挖沙", desc: "等阳光不毒辣了，带孩子们下楼去沙滩玩耍、赶海。", icon: "sun" },
+                    { time: "19:00", type: "activity", title: "海浪夜话", desc: "晚餐可以在海边大排档，享受海风。晚上伴着海浪声入睡。", icon: "coffee" }
                 ]
             },
             {
-                id: 4, day: "Day 5", date: "5月5日", theme: "饮茶送别 · 满载而归", route: "广州市区 ➔ 广州南站",
+                id: 4, day: "Day 5", date: "5月5日", theme: "重返羊城 · 满载而归", route: "惠州 ➔ 广州南站",
                 bgColor: "bg-teal-600", lightBg: "bg-teal-50", textColor: "text-teal-800", iconColor: "text-teal-600", nodeBorder: "border-teal-500", nodeText: "text-teal-600",
-                alert: "五一最后一天广州南站周边路况极差，进站安检大排长龙。务必比平时提前1.5小时以上出发！",
+                alert: "今日需要从惠州开回广州（约2-2.5小时），广州南站周边路况极差。务必根据高铁时间，留出充足余量！",
                 timeline: [
-                    { time: "09:00", type: "food", title: "叹广式早茶", desc: "睡到自然醒，去老字号（点都德/陶陶居等）吃早茶。虾饺、红米肠、凤爪安排上。", icon: "coffee" },
-                    { time: "11:30", type: "relax", title: "退房与行李打包", desc: "返回酒店整理行李，清点物品，准备退房。", icon: "sun" },
-                    { time: "12:30", type: "transport", title: "提前前往广州南站", desc: "驾车前往广州南站。处理租车归还或车辆停放事宜。", icon: "train" },
-                    { time: "14:00", type: "activity", title: "进站候车", desc: "预留充足时间过安检，在候车室与哥哥一家道别，结束愉快的五一假期！", icon: "flag" }
+                    { time: "08:30", type: "relax", title: "早安，海边", desc: "在海浪声中醒来，吃个简单的早餐，让孩子们再看一眼大海。", icon: "sun" },
+                    { time: "10:00", type: "transport", title: "驾车返回广州", desc: "开始最后一段自驾旅程，从惠州开往广州南站。", icon: "car" },
+                    { time: "12:30", type: "food", title: "南站附近午餐", desc: "在广州南站附近找地方简单吃个午饭（如茶餐厅或快餐）。", icon: "utensils" },
+                    { time: "14:00", type: "activity", title: "还车与候车", desc: "处理租车归还或车辆停放事宜。预留时间过安检，准备返程！", icon: "train" }
                 ]
             }
         ];
@@ -160,9 +146,7 @@
                 const isActive = activeDay === idx;
                 
                 btn.className = `flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all ${
-                    isActive 
-                        ? `${day.bgColor} text-white shadow-md` 
-                        : 'bg-white text-gray-500 border border-gray-200'
+                    isActive ? `${day.bgColor} text-white shadow-md` : 'bg-white text-gray-500 border border-gray-200'
                 }`;
                 btn.innerText = day.day;
                 btn.onclick = () => switchTab(idx);
@@ -174,20 +158,13 @@
             const day = itinerary[activeDay];
             const container = document.getElementById('active-card');
             
-            // 重新触发动画
             container.classList.remove('animate-fade-in');
-            void container.offsetWidth; // Trigger reflow
+            void container.offsetWidth; 
             container.classList.add('animate-fade-in');
 
-            // 生成时间轴 HTML
             let timelineHTML = '';
             day.timeline.forEach((item) => {
                 const isAlert = item.type === 'alert';
-                const nodeOuterClass = isAlert 
-                    ? 'bg-red-500 text-white shadow-red-200 border-red-500' 
-                    : `bg-white border-2 border-gray-200 text-gray-500 shadow-sm`;
-                
-                // 动态颜色仅用于非警告节点，且当前选中状态下应用
                 let dynamicStyle = '';
                 if (!isAlert) {
                     dynamicStyle = `class="w-8 h-8 rounded-full flex items-center justify-center z-10 flex-shrink-0 bg-white border-2 border-current shadow-sm ${day.nodeText} ${day.nodeBorder}"`;
@@ -200,50 +177,33 @@
                         <div class="w-16 flex-shrink-0 pt-1">
                             <span class="text-sm font-bold text-gray-800">${item.time}</span>
                         </div>
-                        
                         <div ${dynamicStyle}>
                             <i data-lucide="${item.icon}" class="w-4 h-4"></i>
                         </div>
-                        
                         <div class="ml-4 flex-grow pt-1.5 pb-2">
-                            <h4 class="text-base font-bold ${isAlert ? 'text-red-600' : 'text-gray-800'}">
-                                ${item.title}
-                            </h4>
-                            <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">
-                                ${item.desc}
-                            </p>
+                            <h4 class="text-base font-bold ${isAlert ? 'text-red-600' : 'text-gray-800'}">${item.title}</h4>
+                            <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">${item.desc}</p>
                         </div>
                     </div>
                 `;
             });
 
-            // 渲染整体卡片
             container.innerHTML = `
-                <!-- 头部 -->
                 <div class="${day.bgColor} p-5 text-white">
                     <div class="flex justify-between items-center mb-2">
                         <h2 class="text-2xl font-black">${day.day}</h2>
-                        <span class="text-sm font-medium bg-white/20 px-2 py-1 rounded">
-                            ${day.date}
-                        </span>
+                        <span class="text-sm font-medium bg-white/20 px-2 py-1 rounded">${day.date}</span>
                     </div>
                     <h3 class="text-lg font-bold opacity-90">${day.theme}</h3>
                     <p class="text-sm mt-2 flex items-center opacity-80">
                         <i data-lucide="map-pin" class="w-3 h-3 mr-1"></i> ${day.route}
                     </p>
                 </div>
-
-                <!-- 每日警报 -->
                 <div class="${day.lightBg} px-5 py-3 flex items-start border-b border-gray-100">
                     <i data-lucide="alert-triangle" class="${day.iconColor} mr-2 flex-shrink-0 w-4 h-4 mt-0.5"></i>
-                    <p class="${day.textColor} text-xs font-semibold leading-relaxed">
-                        ${day.alert}
-                    </p>
+                    <p class="${day.textColor} text-xs font-semibold leading-relaxed">${day.alert}</p>
                 </div>
-
-                <!-- 时间线 -->
                 <div class="p-5 relative">
-                    <!-- 纵向连接线 -->
                     <div class="absolute left-9 top-8 bottom-8 w-0.5 bg-gray-200"></div>
                     ${timelineHTML}
                 </div>
@@ -254,11 +214,9 @@
             activeDay = idx;
             renderTabs();
             renderCard();
-            // 每次重新渲染 HTML 后，必须重新初始化 Lucide 图标
             lucide.createIcons();
         }
 
-        // 初始化
         window.onload = () => {
             renderTabs();
             renderCard();
@@ -267,4 +225,5 @@
     </script>
 </body>
 </html>
+
 
